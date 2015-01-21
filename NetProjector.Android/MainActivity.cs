@@ -16,6 +16,7 @@ namespace NetProjector.Android
     [Activity(Label = "NetProjector", MainLauncher = true)]
     public class MainActivity : Activity
     {
+        private const ushort port = 8080;
         View view;
         IStop server;
 
@@ -23,7 +24,7 @@ namespace NetProjector.Android
         {
             get
             {
-                return "http://" + NetworkUtils.GetIPAddressFromDns().FirstOrDefault().ToString();
+                return "http://" + NetworkUtils.GetIPAddressFromDns().FirstOrDefault().ToString() + ":" + port;
             }
         }
 
@@ -38,18 +39,14 @@ namespace NetProjector.Android
             view.RootView.DrawingCacheEnabled = true;
 
             // initialize controls
-            var serverEditText = FindViewById<EditText>(Resource.Id.serverEditText);
             var statusTextView = FindViewById<TextView>(Resource.Id.statusTextView);
+            var startButton = FindViewById<Button>(Resource.Id.startButton);
+            var stopButton = FindViewById<Button>(Resource.Id.stopButton);
+            var shareButton = FindViewById<Button>(Resource.Id.shareButton);
 
-            var responseView = FindViewById<TextView>(Resource.Id.responseView);
-            var connectButton = FindViewById<Button>(Resource.Id.connectButton);
-            var disconnectButton = FindViewById<Button>(Resource.Id.disconnectButton);
-            var queryButton = FindViewById<Button>(Resource.Id.myButton);
-
-            serverEditText.Text = UrlAddress;
-            serverEditText.Enabled = false;
-            disconnectButton.Enabled = false;
-            queryButton.Enabled = false;
+            this.Title = UrlAddress;
+            stopButton.Enabled = false;
+            shareButton.Enabled = true;
 
             //NetworkUtils.GetPublicIPAsync().ContinueWith(t =>
             //{
@@ -58,9 +55,9 @@ namespace NetProjector.Android
             //});
 
             // add event handlers
-            connectButton.Click += (sender, e) =>
+            startButton.Click += (sender, e) =>
             {
-                server = new ProjectorServer(8080, x =>
+                server = new ProjectorServer(port, x =>
                 {
                     using (var b = Utils.ScreenShotByDraw(view.RootView))
                     {
@@ -72,21 +69,21 @@ namespace NetProjector.Android
 
                 if (server != null)
                 {
-                    disconnectButton.Enabled = true;
-                    connectButton.Enabled = false;
+                    stopButton.Enabled = true;
+                    startButton.Enabled = false;
                 }
             };
 
-            disconnectButton.Click += (sender, e) =>
+            stopButton.Click += (sender, e) =>
             {
                 Stop();
-                connectButton.Enabled = true;
-                disconnectButton.Enabled = false;
+                startButton.Enabled = true;
+                stopButton.Enabled = false;
             };
 
-            queryButton.Click += (sender, e) =>
+            shareButton.Click += (sender, e) =>
             {
-
+                this.ShareTextTo(UrlAddress);
             };
         }
 

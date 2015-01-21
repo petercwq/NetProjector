@@ -1,8 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Net.NetworkInformation;
 using System.Threading.Tasks;
+using Android.App;
+using Android.Content;
 using Android.Graphics;
 using Android.Views;
 
@@ -45,6 +44,15 @@ namespace NetProjector.Android
         public async static Task<bool> WriteBitmapTo(Stream st, Bitmap bmp, Bitmap.CompressFormat format, int quality = 70)
         {
             return await bmp.CompressAsync(format, quality, st);
+        }
+
+        public static void ShareTextTo(this Context context, string text)
+        {
+            Intent sendIntent = new Intent();
+            sendIntent.SetAction(Intent.ActionSend);
+            sendIntent.PutExtra(Intent.ExtraText, text);
+            sendIntent.SetType("text/plain");
+            context.StartActivity(Intent.CreateChooser(sendIntent, "Send NetProjector link to:"));
         }
     }
 }
