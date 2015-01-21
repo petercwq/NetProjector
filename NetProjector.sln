@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetProjector.Android", "NetProjector.Android\NetProjector.Android.csproj", "{3CE112F3-226E-44B8-940D-52CE916874C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetProjector.Pc", "NetProjector.Pc\NetProjector.Pc.csproj", "{EF795FE1-1B47-4556-98D9-5F177B4D1D0F}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NetProjector.Core", "NetProjector.Core\NetProjector.Core.shproj", "{F1DA061F-87E0-4566-855D-79A6B77CA94A}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		NetProjector.Core\NetProjector.Core.projitems*{ef795fe1-1b47-4556-98d9-5f177b4d1d0f}*SharedItemsImports = 4
+		NetProjector.Core\NetProjector.Core.projitems*{f1da061f-87e0-4566-855d-79a6b77ca94a}*SharedItemsImports = 13
+		NetProjector.Core\NetProjector.Core.projitems*{3ce112f3-226e-44b8-940d-52ce916874c6}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CE112F3-226E-44B8-940D-52CE916874C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CE112F3-226E-44B8-940D-52CE916874C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CE112F3-226E-44B8-940D-52CE916874C6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3CE112F3-226E-44B8-940D-52CE916874C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CE112F3-226E-44B8-940D-52CE916874C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CE112F3-226E-44B8-940D-52CE916874C6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EF795FE1-1B47-4556-98D9-5F177B4D1D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF795FE1-1B47-4556-98D9-5F177B4D1D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF795FE1-1B47-4556-98D9-5F177B4D1D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF795FE1-1B47-4556-98D9-5F177B4D1D0F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
