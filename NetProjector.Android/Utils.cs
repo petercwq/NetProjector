@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
+using Android.Net;
 using Android.Views;
 
 namespace NetProjector.Android
@@ -53,6 +54,23 @@ namespace NetProjector.Android
             sendIntent.PutExtra(Intent.ExtraText, text);
             sendIntent.SetType("text/plain");
             context.StartActivity(Intent.CreateChooser(sendIntent, "Send NetProjector link to:"));
+        }
+
+        public static Intent CreateShareTextIntent(string text)
+        {
+            Intent sendIntent = new Intent();
+            sendIntent.SetAction(Intent.ActionSend);
+            sendIntent.SetType("text/plain");
+            sendIntent.PutExtra(Intent.ExtraText, text);
+            return sendIntent;
+        }
+
+        public static Intent CreateSharePictureIntent(Uri uri)
+        {
+            var sendPictureIntent = new Intent(Intent.ActionSend);
+            sendPictureIntent.SetType("image/*");
+            sendPictureIntent.PutExtra(Intent.ExtraStream, uri);
+            return sendPictureIntent;
         }
     }
 }

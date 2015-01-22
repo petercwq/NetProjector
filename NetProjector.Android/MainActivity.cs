@@ -19,6 +19,7 @@ namespace NetProjector.Android
         private const ushort port = 8080;
         View view;
         IStop server;
+        IMenuItem startMenuItem, stopMenuItem;
 
         public string UrlAddress
         {
@@ -35,66 +36,40 @@ namespace NetProjector.Android
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            view = Window.DecorView;
-            view.RootView.DrawingCacheEnabled = true;
+            //view = Window.DecorView.RootView;
+            view = FindViewById(Resource.Id.fragmentContainer);
+            view.DrawingCacheEnabled = true;
 
-            // initialize controls
-            var statusTextView = FindViewById<TextView>(Resource.Id.statusTextView);
-            var startButton = FindViewById<Button>(Resource.Id.startButton);
-            var stopButton = FindViewById<Button>(Resource.Id.stopButton);
-            var shareButton = FindViewById<Button>(Resource.Id.shareButton);
+            this.ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
 
-            this.Title = UrlAddress;
-            stopButton.Enabled = false;
-            shareButton.Enabled = true;
+            ActionBar.SetTitle(Resource.String.Title);
+            ActionBar.SetSubtitle(Resource.String.SubTitle);
+            ActionBar.SetDisplayShowTitleEnabled(true);
+            ActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            //NetworkUtils.GetPublicIPAsync().ContinueWith(t =>
-            //{
-            //    if (t.Status == TaskStatus.RanToCompletion)
-            //        RunOnUiThread(() => this.Title = t.Result.Trim());
-            //});
+            AddTab("", Resource.Drawable.ic_tab_config, new SampleTabFragment());
+            AddTab("", Resource.Drawable.ic_tab_camera, new SampleTabFragment2());
 
-            // add event handlers
-            startButton.Click += (sender, e) =>
+            if (bundle != null)
+                this.ActionBar.SelectTab(this.ActionBar.GetTabAt(bundle.GetInt("tab")));
+        }
+
+        private void Start()
+        {
+            if (server != null)
+                return;
+            server = new ProjectorServer(port, x =>
             {
-                server = new ProjectorServer(port, x =>
+                using (var b = Utils.ScreenShotByDraw(view.RootView))
                 {
-                    using (var b = Utils.ScreenShotByDraw(view.RootView))
-                    {
-                        RunOnUiThread(() => statusTextView.Text = "Get at " + DateTime.Now.ToString());
-
-                        return Utils.BitmapToBytes(b, x == "png" ? Bitmap.CompressFormat.Png : Bitmap.CompressFormat.Jpeg).Result;
-                    }
-                }).Start();
-
-                if (server != null)
-                {
-                    stopButton.Enabled = true;
-                    startButton.Enabled = false;
+                    ShowToast("Refresh at " + DateTime.Now.ToString(), ToastLength.Short);
+                    return Utils.BitmapToBytes(b, x == "png" ? Bitmap.CompressFormat.Png : Bitmap.CompressFormat.Jpeg).Result;
                 }
-            };
+            }).Start();
 
-            stopButton.Click += (sender, e) =>
-            {
-                Stop();
-                startButton.Enabled = true;
-                stopButton.Enabled = false;
-            };
-
-            shareButton.Click += (sender, e) =>
-            {
-                this.ShareTextTo(UrlAddress);
-            };
-        }
-
-        private Task<T> RunAsync<T>(Func<T> func)
-        {
-            return Task.Factory.StartNew(func);
-        }
-
-        private void ShowToast(string text, ToastLength length = ToastLength.Long)
-        {
-            RunOnUiThread(() => Toast.MakeText(this, text, length).Show());
+            ShowToast("Start successfully on: " + UrlAddress);
+            startMenuItem.SetEnabled(false);
+            stopMenuItem.SetEnabled(true);
         }
 
         private void Stop()
@@ -102,12 +77,120 @@ namespace NetProjector.Android
             if (server != null)
                 server.Stop();
             server = null;
+            ShowToast("Stop successfully");
+            startMenuItem.SetEnabled(true);
+            stopMenuItem.SetEnabled(false);
         }
 
         protected override void OnDestroy()
         {
             Stop();
             base.OnDestroy();
+        }
+
+        private void ShowToast(string text, ToastLength length = ToastLength.Long)
+        {
+            RunOnUiThread(() => Toast.MakeText(this, text, length).Show());
+        }
+
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            outState.PutInt("tab", this.ActionBar.SelectedNavigationIndex);
+
+            base.OnSaveInstanceState(outState);
+        }
+
+        /// <summary>
+        /// Attach the menu to the menu button of the device for this activity
+        /// </summary>
+        /// <param name="menu"></param>
+        /// <returns></returns>
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            base.OnCreateOptionsMenu(menu);
+
+            MenuInflater.Inflate(Resource.Menu.ActionBarMenu, menu);
+
+            var shareMenuItem = menu.FindItem(Resource.Id.shareMenuItem);
+            var shareActionProvider = (ShareActionProvider)shareMenuItem.ActionProvider;
+            shareActionProvider.SetShareIntent(Utils.CreateShareTextIntent(UrlAddress));
+
+            startMenuItem = menu.FindItem(Resource.Id.startmenuitem);
+            stopMenuItem = menu.FindItem(Resource.Id.stopmenuitem);
+            stopMenuItem.SetEnabled(false);
+            return true;
+        }
+
+        /// <param name="item">The menu item that was selected.</param>
+        /// <summary>
+        /// This hook is called whenever an item in your options menu is selected.
+        /// </summary>
+        /// <returns>To be added.</returns>
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            base.OnOptionsItemSelected(item);
+
+            switch (item.ItemId)
+            {
+                case Resource.Id.startmenuitem:
+                    Start();
+                    break;
+                case Resource.Id.stopmenuitem:
+                    Stop();
+                    break;
+                default:
+                    break;
+            }
+
+            return true;
+        }
+
+        void AddTab(string tabText, int iconResourceId, Fragment view)
+        {
+            var tab = this.ActionBar.NewTab();
+            tab.SetText(tabText);
+            tab.SetIcon(iconResourceId);
+
+            // must set event handler before adding tab
+            tab.TabSelected += delegate(object sender, ActionBar.TabEventArgs e)
+            {
+                var fragment = this.FragmentManager.FindFragmentById(Resource.Id.fragmentContainer);
+                if (fragment != null)
+                    e.FragmentTransaction.Remove(fragment);
+                e.FragmentTransaction.Add(Resource.Id.fragmentContainer, view);
+            };
+            tab.TabUnselected += delegate(object sender, ActionBar.TabEventArgs e)
+            {
+                e.FragmentTransaction.Remove(view);
+            };
+
+            this.ActionBar.AddTab(tab);
+        }
+
+        class SampleTabFragment : Fragment
+        {
+            public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+            {
+                base.OnCreateView(inflater, container, savedInstanceState);
+
+                var view = inflater.Inflate(Resource.Layout.Tab_config, container, false);
+                var sampleTextView = view.FindViewById<TextView>(Resource.Id.statusTextView);
+                sampleTextView.Text = "sample fragment text";
+
+                return view;
+            }
+        }
+
+        class SampleTabFragment2 : Fragment
+        {
+            public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+            {
+                base.OnCreateView(inflater, container, savedInstanceState);
+
+                var view = inflater.Inflate(Resource.Layout.Tab_camera, container, false);
+
+                return view;
+            }
         }
     }
 }

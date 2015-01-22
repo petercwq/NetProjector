@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Send">Click To Send!</string>
-    <string name="ApplicationName">NetProjector.Android</string>
+  <string name="shareLink"></string>
+  <string name="ApplicationName">NetProjector</string>
+  <string name="Title">Projector</string>
+  <string name="SubTitle">Share anywhere...</string>
 </resources>
