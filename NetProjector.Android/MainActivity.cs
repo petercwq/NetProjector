@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Android.App;
+using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Views;
@@ -53,8 +54,8 @@ namespace NetProjector.Android
 
             ActionBar.SetTitle(Resource.String.Title);
             ActionBar.SetSubtitle(Resource.String.SubTitle);
-            ActionBar.SetDisplayShowTitleEnabled(true);
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
+            ActionBar.SetDisplayShowTitleEnabled(false);
+            ActionBar.SetDisplayHomeAsUpEnabled(false);
 
             AddTab("", Resource.Drawable.ic_tab_camera, new CameraTabFragment());
             AddTab("", Resource.Drawable.ic_tab_note, new NoteTabFragment());
@@ -174,30 +175,6 @@ namespace NetProjector.Android
             };
 
             this.ActionBar.AddTab(tab);
-        }
-
-        class CameraTabFragment : Fragment
-        {
-            public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-            {
-                base.OnCreateView(inflater, container, savedInstanceState);
-
-                var view = inflater.Inflate(Resource.Layout.Tab_camera, container, false);
-
-                return view;
-            }
-        }
-
-        class NoteTabFragment : Fragment
-        {
-            public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-            {
-                base.OnCreateView(inflater, container, savedInstanceState);
-
-                var view = inflater.Inflate(Resource.Layout.Tab_note, container, false);
-
-                return view;
-            }
         }
     }
 }

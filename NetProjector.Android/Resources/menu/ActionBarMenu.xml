@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@+id/shareMenuItem"
-      android:showAsAction="always"
-      android:title="@string/shareLink"
-      android:actionProviderClass="android.widget.ShareActionProvider" />
+  android:showAsAction="always"
+  android:orderInCategory="250"
+  android:title="@string/shareLink"
+  android:actionProviderClass="android.widget.ShareActionProvider" />
+
   <item android:id="@+id/startmenuitem"
       android:icon="@drawable/ic_action_start"
       android:showAsAction="always"
@@ -18,7 +20,7 @@
   </item>
   <item android:id="@+id/refresh"
         android:icon="@drawable/ic_action_refresh"
-        android:showAsAction="always"
+        android:showAsAction="never"
         android:orderInCategory="300"
         android:title="Refresh"/>
   <item android:id="@+id/help"

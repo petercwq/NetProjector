@@ -59,7 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CameraTabFragment.cs" />
+    <Compile Include="CustomShareProvider.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="NoteTabFragment.cs" />
     <Compile Include="ProjectorServer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,11 +85,10 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
-    <AndroidResource Include="Resources\menu\ActionBarMenu.xml" />
+    <AndroidResource Include="Resources\menu\ActionBarMenu.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_about.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_help.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_refresh.png" />
@@ -122,7 +124,30 @@
     <AndroidResource Include="Resources\drawable-ldpi\ic_action_stop.png" />
     <AndroidResource Include="Resources\drawable-ldpi\ic_tab_camera.png" />
     <AndroidResource Include="Resources\drawable-ldpi\ic_tab_note.png" />
+    <AndroidResource Include="Resources\values\Styles.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_share.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_action_share.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_share.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_share.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_share.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\Icon.png" />
+    <AndroidResource Include="Resources\anim\left_in.xml" />
+    <AndroidResource Include="Resources\anim\left_out.xml" />
+    <AndroidResource Include="Resources\anim\right_in.xml" />
+    <AndroidResource Include="Resources\anim\right_out.xml" />
+    <AndroidResource Include="Resources\drawable\color_baloons.jpg" />
+    <AndroidResource Include="Resources\drawable\lightning.jpg" />
+    <AndroidResource Include="Resources\drawable\natural_wall.jpg" />
+    <AndroidResource Include="Resources\drawable\swipe_left.png" />
+    <AndroidResource Include="Resources\drawable\swipe_right.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\NetProject.Share\NetProject.Share.projitems" Label="Shared" Condition="Exists('..\NetProject.Share\NetProject.Share.projitems')" />
   <Import Project="..\NetProjector.Core\NetProjector.Core.projitems" Label="Shared" Condition="Exists('..\NetProjector.Core\NetProjector.Core.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

@@ -3,5 +3,8 @@
   <string name="shareLink"></string>
   <string name="ApplicationName">NetProjector</string>
   <string name="Title">Projector</string>
-  <string name="SubTitle">Share anywhere...</string>
+  <string name="SubTitle">Share Anywhere</string>
+  <string name="lightning">Natural Lightning</string>
+  <string name="color_baloons">Color Baloons</string>
+  <string name="natural_wall">Natural Wall</string>
 </resources>
