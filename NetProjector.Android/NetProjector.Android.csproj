@@ -76,7 +76,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Tab_config.axml" />
+    <AndroidResource Include="Resources\layout\Tab_note.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -86,31 +86,42 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
-    <AndroidResource Include="Resources\drawable\ic_tab_camera.png" />
-    <AndroidResource Include="Resources\drawable\ic_tab_config.png" />
     <AndroidResource Include="Resources\menu\ActionBarMenu.xml" />
-    <AndroidResource Include="Resources\drawable\ic_action_start.png" />
-    <AndroidResource Include="Resources\drawable\ic_action_stop.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_about.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_help.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_action_overflow.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_refresh.png" />
     <AndroidResource Include="Resources\drawable-ldpi\ic_action_about.png" />
     <AndroidResource Include="Resources\drawable-ldpi\ic_action_help.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\ic_action_overflow.png" />
     <AndroidResource Include="Resources\drawable-ldpi\ic_action_refresh.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_about.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_help.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_action_overflow.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_refresh.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_about.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_help.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_overflow.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_refresh.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_about.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_help.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_overflow.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_refresh.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_start.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_stop.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_tab_camera.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_tab_note.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_start.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_stop.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_tab_camera.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_tab_note.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_start.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_stop.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_tab_camera.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_tab_note.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_start.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_stop.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_tab_camera.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_tab_note.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_action_start.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_action_stop.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_tab_camera.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_tab_note.png" />
   </ItemGroup>
   <Import Project="..\NetProject.Share\NetProject.Share.projitems" Label="Shared" Condition="Exists('..\NetProject.Share\NetProject.Share.projitems')" />
   <Import Project="..\NetProjector.Core\NetProjector.Core.projitems" Label="Shared" Condition="Exists('..\NetProjector.Core\NetProjector.Core.projitems')" />

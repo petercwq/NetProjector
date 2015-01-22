@@ -33,6 +33,15 @@ namespace NetProjector.Android
         {
             base.OnCreate(bundle);
 
+            // The Action Bar is a window feature. The feature must be requested
+            // before setting a content view. Normally this is set automatically
+            // by your Activity's theme in your manifest. The provided system
+            // theme Theme.WithActionBar enables this for you. Use it as you would
+            // use Theme.NoTitleBar. You can add an Action Bar to your own themes
+            // by adding the element <item name="android:windowActionBar">true</item>
+            // to your style definition.
+            Window.RequestFeature(WindowFeatures.ActionBar);
+
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
@@ -47,8 +56,8 @@ namespace NetProjector.Android
             ActionBar.SetDisplayShowTitleEnabled(true);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            AddTab("", Resource.Drawable.ic_tab_config, new SampleTabFragment());
-            AddTab("", Resource.Drawable.ic_tab_camera, new SampleTabFragment2());
+            AddTab("", Resource.Drawable.ic_tab_camera, new CameraTabFragment());
+            AddTab("", Resource.Drawable.ic_tab_note, new NoteTabFragment());
 
             if (bundle != null)
                 this.ActionBar.SelectTab(this.ActionBar.GetTabAt(bundle.GetInt("tab")));
@@ -167,27 +176,25 @@ namespace NetProjector.Android
             this.ActionBar.AddTab(tab);
         }
 
-        class SampleTabFragment : Fragment
-        {
-            public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-            {
-                base.OnCreateView(inflater, container, savedInstanceState);
-
-                var view = inflater.Inflate(Resource.Layout.Tab_config, container, false);
-                var sampleTextView = view.FindViewById<TextView>(Resource.Id.statusTextView);
-                sampleTextView.Text = "sample fragment text";
-
-                return view;
-            }
-        }
-
-        class SampleTabFragment2 : Fragment
+        class CameraTabFragment : Fragment
         {
             public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
             {
                 base.OnCreateView(inflater, container, savedInstanceState);
 
                 var view = inflater.Inflate(Resource.Layout.Tab_camera, container, false);
+
+                return view;
+            }
+        }
+
+        class NoteTabFragment : Fragment
+        {
+            public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+            {
+                base.OnCreateView(inflater, container, savedInstanceState);
+
+                var view = inflater.Inflate(Resource.Layout.Tab_note, container, false);
 
                 return view;
             }
