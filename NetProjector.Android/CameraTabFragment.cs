@@ -18,34 +18,34 @@ namespace NetProjector.Android
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-           return base.OnCreateView(inflater, container, savedInstanceState);
+            //return base.OnCreateView(inflater, container, savedInstanceState);
 
-            //var view = inflater.Inflate(Resource.Layout.Tab_camera, container, false);
+            var view = inflater.Inflate(Resource.Layout.Tab_camera, container, false);
 
-            //mContext = this.Activity;
-            //mViewFlipper = (ViewFlipper)view.FindViewById(Resource.Id.view_flipper);
+            mContext = this.Activity;
+            mViewFlipper = (ViewFlipper)view.FindViewById(Resource.Id.view_flipper);
 
-            //detector = new GestureDetector(new SwipeGestureDetector(mContext, mViewFlipper, this));
+            detector = new GestureDetector(new SwipeGestureDetector(mContext, mViewFlipper, this));
 
-            //mViewFlipper.Touch += (sender, e) =>
-            //{
-            //    detector.OnTouchEvent(e.Event);
-            //};
+            mViewFlipper.Touch += (sender, e) =>
+            {
+                detector.OnTouchEvent(e.Event);
+            };
 
-            //view.FindViewById(Resource.Id.play).Click += (sender, e) =>
-            //    {
-            //        //sets auto flipping
-            //        mViewFlipper.AutoStart = true;
-            //        mViewFlipper.SetFlipInterval(4000);
-            //        mViewFlipper.StartFlipping();
-            //    };
+            view.FindViewById(Resource.Id.play).Click += (sender, e) =>
+                {
+                    //sets auto flipping
+                    mViewFlipper.AutoStart = true;
+                    mViewFlipper.SetFlipInterval(4000);
+                    mViewFlipper.StartFlipping();
+                };
 
-            //view.FindViewById(Resource.Id.stop).Click += (sender, e) =>
-            //    {
-            //        //stop auto flipping 
-            //        mViewFlipper.StopFlipping();
-            //    };
-            //return view;
+            view.FindViewById(Resource.Id.stop).Click += (sender, e) =>
+                {
+                    //stop auto flipping 
+                    mViewFlipper.StopFlipping();
+                };
+            return view;
         }
 
         #region IAnimationListener Members
