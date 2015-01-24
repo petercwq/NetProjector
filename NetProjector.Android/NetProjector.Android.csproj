@@ -36,7 +36,7 @@
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
-    <JavaMaximumHeapSize />
+    <JavaMaximumHeapSize>100m</JavaMaximumHeapSize>
     <JavaOptions />
     <MonoDroidExtraArgs />
   </PropertyGroup>
@@ -59,13 +59,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CameraTabFragment.cs" />
-    <Compile Include="CustomShareProvider.cs" />
-    <Compile Include="MainActivity.cs" />
-    <Compile Include="NoteTabFragment.cs" />
+    <Compile Include="Fragments\GridViewFragment.cs" />
+    <Compile Include="Adapters\ViewAdapter.cs" />
+    <Compile Include="AppConstant.cs" />
+    <Compile Include="Fragments\CameraTabFragment.cs" />
+    <Compile Include="SwipeOnGestureListener.cs" />
+    <Compile Include="Providers\CustomShareProvider.cs" />
+    <Compile Include="Activities\FullScreenViewActivity.cs" />
+    <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Fragments\NoteTabFragment.cs" />
     <Compile Include="ProjectorServer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TouchImageView.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +81,15 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Tab_camera.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Grid_view.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Fullscreen_view.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Fullscreen_image.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -146,6 +161,11 @@
     <AndroidResource Include="Resources\drawable\natural_wall.jpg" />
     <AndroidResource Include="Resources\drawable\swipe_left.png" />
     <AndroidResource Include="Resources\drawable\swipe_right.png" />
+    <AndroidResource Include="Resources\drawable\button_background.xml" />
+    <AndroidResource Include="Resources\anim\left_in_obj.xml" />
+    <AndroidResource Include="Resources\anim\right_out_obj.xml" />
+    <AndroidResource Include="Resources\anim\right_in_obj.xml" />
+    <AndroidResource Include="Resources\anim\left_out_obj.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="..\NetProject.Share\NetProject.Share.projitems" Label="Shared" Condition="Exists('..\NetProject.Share\NetProject.Share.projitems')" />

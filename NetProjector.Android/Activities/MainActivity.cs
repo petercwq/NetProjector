@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Android.App;
-using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using NetProjector.Android.Fragments;
 using NetProjector.Core;
 
-namespace NetProjector.Android
+namespace NetProjector.Android.Activities
 {
     /// <summary>
     /// Main activity of the application.
@@ -57,6 +56,7 @@ namespace NetProjector.Android
             ActionBar.SetDisplayShowTitleEnabled(false);
             ActionBar.SetDisplayHomeAsUpEnabled(false);
 
+            AddTab("", Resource.Drawable.ic_action_share, new GridViewFragment());
             AddTab("", Resource.Drawable.ic_tab_camera, new CameraTabFragment());
             AddTab("", Resource.Drawable.ic_tab_note, new NoteTabFragment());
 

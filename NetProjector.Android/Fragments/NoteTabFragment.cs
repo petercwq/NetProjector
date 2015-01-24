@@ -3,7 +3,7 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 
-namespace NetProjector.Android
+namespace NetProjector.Android.Fragments
 {
     class NoteTabFragment : Fragment
     {

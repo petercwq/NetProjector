@@ -35,13 +35,25 @@ namespace NetProjector.Android
 			public const int left_in = 2130968576;
 			
 			// aapt resource value: 0x7f040001
-			public const int left_out = 2130968577;
+			public const int left_in_obj = 2130968577;
 			
 			// aapt resource value: 0x7f040002
-			public const int right_in = 2130968578;
+			public const int left_out = 2130968578;
 			
 			// aapt resource value: 0x7f040003
-			public const int right_out = 2130968579;
+			public const int left_out_obj = 2130968579;
+			
+			// aapt resource value: 0x7f040004
+			public const int right_in = 2130968580;
+			
+			// aapt resource value: 0x7f040005
+			public const int right_in_obj = 2130968581;
+			
+			// aapt resource value: 0x7f040006
+			public const int right_out = 2130968582;
+			
+			// aapt resource value: 0x7f040007
+			public const int right_out_obj = 2130968583;
 			
 			static Animation()
 			{
@@ -70,46 +82,49 @@ namespace NetProjector.Android
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int color_baloons = 2130837504;
+			public const int button_background = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int ic_action_about = 2130837505;
+			public const int color_baloons = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int ic_action_help = 2130837506;
+			public const int ic_action_about = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int ic_action_refresh = 2130837507;
+			public const int ic_action_help = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int ic_action_share = 2130837508;
+			public const int ic_action_refresh = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int ic_action_start = 2130837509;
+			public const int ic_action_share = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int ic_action_stop = 2130837510;
+			public const int ic_action_start = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int ic_tab_camera = 2130837511;
+			public const int ic_action_stop = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int ic_tab_note = 2130837512;
+			public const int ic_tab_camera = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int Icon = 2130837513;
+			public const int ic_tab_note = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int lightning = 2130837514;
+			public const int Icon = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int natural_wall = 2130837515;
+			public const int lightning = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int swipe_left = 2130837516;
+			public const int natural_wall = 2130837516;
 			
 			// aapt resource value: 0x7f02000d
-			public const int swipe_right = 2130837517;
+			public const int swipe_left = 2130837517;
+			
+			// aapt resource value: 0x7f02000e
+			public const int swipe_right = 2130837518;
 			
 			static Drawable()
 			{
@@ -124,41 +139,53 @@ namespace NetProjector.Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f08000b
-			public const int about = 2131230731;
-			
-			// aapt resource value: 0x7f080000
-			public const int fragmentContainer = 2131230720;
-			
-			// aapt resource value: 0x7f08000a
-			public const int help = 2131230730;
+			// aapt resource value: 0x7f08000f
+			public const int about = 2131230735;
 			
 			// aapt resource value: 0x7f080002
-			public const int play = 2131230722;
-			
-			// aapt resource value: 0x7f080009
-			public const int refresh = 2131230729;
-			
-			// aapt resource value: 0x7f080006
-			public const int shareMenuItem = 2131230726;
-			
-			// aapt resource value: 0x7f080007
-			public const int startmenuitem = 2131230727;
-			
-			// aapt resource value: 0x7f080003
-			public const int stop = 2131230723;
-			
-			// aapt resource value: 0x7f080008
-			public const int stopmenuitem = 2131230728;
-			
-			// aapt resource value: 0x7f080004
-			public const int swipe_left = 2131230724;
-			
-			// aapt resource value: 0x7f080005
-			public const int swipe_right = 2131230725;
+			public const int adpater_view_flipper = 2131230722;
 			
 			// aapt resource value: 0x7f080001
-			public const int view_flipper = 2131230721;
+			public const int btnClose = 2131230721;
+			
+			// aapt resource value: 0x7f080004
+			public const int fragmentContainer = 2131230724;
+			
+			// aapt resource value: 0x7f080003
+			public const int grid_view = 2131230723;
+			
+			// aapt resource value: 0x7f08000e
+			public const int help = 2131230734;
+			
+			// aapt resource value: 0x7f080000
+			public const int imgDisplay = 2131230720;
+			
+			// aapt resource value: 0x7f080006
+			public const int play = 2131230726;
+			
+			// aapt resource value: 0x7f08000d
+			public const int refresh = 2131230733;
+			
+			// aapt resource value: 0x7f08000a
+			public const int shareMenuItem = 2131230730;
+			
+			// aapt resource value: 0x7f08000b
+			public const int startmenuitem = 2131230731;
+			
+			// aapt resource value: 0x7f080007
+			public const int stop = 2131230727;
+			
+			// aapt resource value: 0x7f08000c
+			public const int stopmenuitem = 2131230732;
+			
+			// aapt resource value: 0x7f080008
+			public const int swipe_left = 2131230728;
+			
+			// aapt resource value: 0x7f080009
+			public const int swipe_right = 2131230729;
+			
+			// aapt resource value: 0x7f080005
+			public const int view_flipper = 2131230725;
 			
 			static Id()
 			{
@@ -174,13 +201,22 @@ namespace NetProjector.Android
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int Fullscreen_image = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Tab_camera = 2130903041;
+			public const int Fullscreen_view = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int Tab_note = 2130903042;
+			public const int Grid_view = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int Main = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int Tab_camera = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int Tab_note = 2130903045;
 			
 			static Layout()
 			{
