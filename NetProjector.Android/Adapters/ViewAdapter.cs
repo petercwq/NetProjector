@@ -9,14 +9,14 @@ namespace NetProjector.Android.Adaptors
         //private Context _context;
         //private IEnumerable<string> _filePaths;
         //private readonly Dictionary<string, View> _imageViews;
-        private readonly Func<int, View> _viewCreator;
+        private readonly Func<int, View, View> _viewUpdater;
         private readonly Func<int> _getCount;
 
-        public ViewAdapter(Func<int> getCount, Func<int, View> viewCreater)
+        public ViewAdapter(Func<int> getCount, Func<int, View, View> viewUpdater)
         {
             //this._context = context;
             //this._filePaths = filePaths;
-            _viewCreator = viewCreater;
+            _viewUpdater = viewUpdater;
             //_imageViews = new Dictionary<string, View>();
             _getCount = getCount;
         }
@@ -44,7 +44,7 @@ namespace NetProjector.Android.Adaptors
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            var view = convertView ?? _viewCreator(position);
+            var view = /*convertView ?? */_viewUpdater(position, convertView);
             return view;
         }
     }

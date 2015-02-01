@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -53,22 +54,25 @@ namespace NetProjector.Android.Activities
             int position = Intent.GetIntExtra("position", 0);
             var imagePaths = Utils.GetFileInfos(AppConstant.PHOTO_ALBUM, AppConstant.FILE_EXTN).Select(x => x.FullName);
 
-            adapter = new ViewAdapter(() => imagePaths.Count(), pos =>
+            adapter = new ViewAdapter(() => imagePaths.Count(), (pos, oldView) =>
             {
-                var viewLayout = this.LayoutInflater.Inflate(Resource.Layout.Fullscreen_image, mViewFlipper, false);
+                var viewLayout = oldView != null ? oldView : this.LayoutInflater.Inflate(Resource.Layout.Fullscreen_image, mViewFlipper, false);
 
                 var imgDisplay = (TouchImageView)viewLayout.FindViewById(Resource.Id.imgDisplay);
-                var btnClose = viewLayout.FindViewById(Resource.Id.btnClose);
+                imgDisplay.SetScaleType(ImageView.ScaleType.CenterInside);
+
+                if (viewLayout != oldView)
+                {
+                    // close button click event
+                    var btnClose = viewLayout.FindViewById(Resource.Id.btnClose);
+                    btnClose.Click += (sender, e) => this.Finish();
+                }
 
                 //BitmapFactory.Options options = new BitmapFactory.Options();
                 //options.InPreferredConfig = Bitmap.Config.Argb8888;
                 //Bitmap bitmap = BitmapFactory.DecodeFile(imagePaths.ElementAt(pos), options);
-                var bitmap = Utils.LoadAndResizeBitmap(imagePaths.ElementAt(pos), Resources.DisplayMetrics.WidthPixels, Resources.DisplayMetrics.HeightPixels);
+                Task.Run<Bitmap>(() => Utils.LoadAndResizeBitmap(imagePaths.ElementAt(pos), Resources.DisplayMetrics.WidthPixels, Resources.DisplayMetrics.HeightPixels)).ContinueWith(x => imgDisplay.SetImageBitmap(x.Result), TaskScheduler.FromCurrentSynchronizationContext());
 
-                imgDisplay.SetScaleType(ImageView.ScaleType.CenterInside);
-                imgDisplay.SetImageBitmap(bitmap);
-                // close button click event
-                btnClose.Click += (sender, e) => this.Finish();
                 return viewLayout;
             });
 

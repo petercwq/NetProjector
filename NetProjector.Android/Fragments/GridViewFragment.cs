@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Util;
 using Android.Views;
@@ -33,15 +35,14 @@ namespace NetProjector.Android.Fragments
             imagePaths = Utils.GetFileInfos(AppConstant.PHOTO_ALBUM, AppConstant.FILE_EXTN).Select(x => x.FullName);
 
             // Gridview adapter
-            adapter = new ViewAdapter(() => imagePaths.Count(), pos =>
+            adapter = new ViewAdapter(() => imagePaths.Count(), (pos, oldView) =>
             {
                 var imageWidth = columnWidth;
-                var imageView = new ImageView(activity);
-                var image = Utils.LoadAndResizeBitmap(imagePaths.ElementAt(pos), imageWidth, imageWidth);
-
+                var imageView = oldView != null ? (oldView as ImageView) : new ImageView(activity);
                 imageView.SetScaleType(ImageView.ScaleType.CenterCrop);
                 imageView.LayoutParameters = new GridView.LayoutParams(imageWidth, imageWidth);
-                imageView.SetImageBitmap(image);
+
+                Task.Run<Bitmap>(() => Utils.LoadAndResizeBitmap(imagePaths.ElementAt(pos), imageWidth, imageWidth)).ContinueWith(x => imageView.SetImageBitmap(x.Result), TaskScheduler.FromCurrentSynchronizationContext());
 
                 // image view click listener
                 imageView.Click += (sender, e) =>

@@ -14,7 +14,7 @@ namespace NetProjector.Android
         // SD card image directory
         public static readonly string PHOTO_ALBUM = Environment.GetExternalStoragePublicDirectory(Environment.DirectoryDcim).AbsolutePath;
         // supported file formats
-        public static readonly List<string> FILE_EXTN = new List<string> { "*.jpg", "*.jpeg", "*.png" };
+        public static readonly List<string> FILE_EXTN = new List<string> { "*.jpg", "*.jpeg", "*.png", "*.JPG", "*.JPEG" };
 
         public static readonly int SWIPE_MIN_DISTANCE = 80;
         public static readonly int SWIPE_THRESHOLD_VELOCITY = 100;
